@@ -1,12 +1,21 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <div id="nav" class="has-text-left" style="background:black;margin-bottom:3em;">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
     </div>
     <router-view/>
+    <footer class="footer" style="background:black;color:white;margin-top:2em;">
+  <div class="content has-text-centered" >
+    <p>
+      © Copy Rights
+      </p>
+  </div>
+</footer>
   </div>
 </template>
+<script>
+
+</script>
 
 <style lang="scss">
 #app {
