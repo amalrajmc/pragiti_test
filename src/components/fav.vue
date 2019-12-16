@@ -10,15 +10,22 @@ export default {
   props: ['product'],
   data () {
     return {
-      liste:'',
+      liste:[],
       btntxt:'add'
     }
   },
   mounted () {
+
+    if(localStorage.getItem('wishlist')){
+
     this.liste = JSON.parse(localStorage.getItem('wishlist'));
-if(this.liste.includes(this.product.id)){
-  this.btntxt='remove'
+
 }
+else{ this.liste =[]}
+console.log(this.liste)
+// if(this.liste.includes(this.product.id)){
+//   this.btntxt='remove'
+// }
 
   },
   computed: {
@@ -35,24 +42,27 @@ if(this.liste.includes(this.product.id)){
       unFavorite (post) {
 
          if(this.liste.includes(this.product.id)){
-           alert(1)
-           this.liste = JSON.parse(localStorage.getItem('wishlist'));
-            console.log(this.liste)
+
+            if(localStorage.getItem('wishlist')){
+               this.liste = JSON.parse(localStorage.getItem('wishlist'));
+          }
             this.liste.splice( this.liste.indexOf(this.product.id), 1 );
 
            localStorage.setItem('wishlist', JSON.stringify(this.liste))
+           
            this.liste = JSON.parse(localStorage.getItem('wishlist'));
            console.log(this.liste)
            this.btntxt="add"
 
          }
          else{
-           alert(2)
+             if(localStorage.getItem('wishlist')){
            this.liste = JSON.parse(localStorage.getItem('wishlist'));
+         }
            this.liste.push(this.product.id)
            localStorage.setItem('wishlist', JSON.stringify(this.liste))
            this.liste = JSON.parse(localStorage.getItem('wishlist'));
-           console.log(this.liste)
+
            this.btntxt="remove"
          }
     }
