@@ -47,9 +47,8 @@ console.log(this.liste)
                this.liste = JSON.parse(localStorage.getItem('wishlist'));
           }
             this.liste.splice( this.liste.indexOf(this.product.id), 1 );
-
            localStorage.setItem('wishlist', JSON.stringify(this.liste))
-           
+
            this.liste = JSON.parse(localStorage.getItem('wishlist'));
            console.log(this.liste)
            this.btntxt="add"
