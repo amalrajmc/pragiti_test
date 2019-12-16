@@ -43,7 +43,7 @@ export default {
   },
   components: { buttonX },
   mounted () {
-    this.axios.get('https://jsonplaceholder.typicode.com/photos').then(response => {
+    this.axios.get('https://jsonplaceholder.typicode.com/photos?_limit=10').then(response => {
       console.log(response)
       this.products = response.data
     })
