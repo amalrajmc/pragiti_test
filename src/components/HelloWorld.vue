@@ -41,6 +41,11 @@ export default {
       buttontxt: 'Add To Wishlist'
     }
   },
+  computed : {
+    newlist () {
+      
+    }
+  },
   components: { buttonX },
   mounted () {
     this.axios.get('https://jsonplaceholder.typicode.com/photos?_limit=10').then(response => {

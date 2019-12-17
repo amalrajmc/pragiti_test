@@ -19,13 +19,13 @@ export default {
     if(localStorage.getItem('wishlist')){
 
     this.liste = JSON.parse(localStorage.getItem('wishlist'));
-
+    if(this.liste.includes(this.product.id)){
+      this.btntxt='remove'
+    }
 }
 else{ this.liste =[]}
 console.log(this.liste)
-// if(this.liste.includes(this.product.id)){
-//   this.btntxt='remove'
-// }
+
 
   },
   computed: {
