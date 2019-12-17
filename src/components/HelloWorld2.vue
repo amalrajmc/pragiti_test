@@ -4,7 +4,7 @@
 <div class="columns is-centered">
   <div class="column is-10">
     <div  class="columns is-centered is-multiline">
-      <div class="column is-3" :key="product.id" v-for="product in products">
+      <div class="column is-3" :key="product.id" v-for="product in newlist">
 
         <div class="card">
   <div class="card-image">
@@ -17,8 +17,8 @@
 <h1 class="subtitle" style="background:white;">{{product.id}}</h1>
   </div>
   <footer class="card-footer">
-
-  <buttonX :product="product" ></buttonX>
+    <button v-if="!product.active" @click="add(product)"> add</button>
+    <button v-if="product.active" @click="remove(product)"> remove</button>
 </footer>
 </div>
 
@@ -38,17 +38,50 @@ export default {
       products: [],
       list: [],
       isFavorite: false,
-      buttontxt: 'Add To Wishlist'
+      buttontxt: 'Add To Wishlist',
+    }
+  },
+  computed : {
+    newlist () {
+
+      return this.products.map((product)=>{
+        if(JSON.parse(localStorage.getItem('wishlist'))==null){
+          this.list=[]
+          localStorage.setItem('wishlist',JSON.stringify(this.list))
+          return {...product,active:false}
+        }
+        else{
+
+          this.list=JSON.parse(localStorage.getItem('wishlist'))
+          console.log(typeof(this.list))
+          return (this.list.includes(product.id))?({...product,active:true}):({...product,active:false})
+
+        }
+      })
+
     }
   },
   components: { buttonX },
   mounted () {
+
     this.axios.get('https://jsonplaceholder.typicode.com/photos?_limit=10').then(response => {
       console.log(response)
       this.products = response.data
+      console.log(this.newlist)
     })
   },
   methods: {
+    add (product){
+        this.list.push(product.id)
+        localStorage.setItem('wishlist',JSON.stringify(this.list))
+
+    },
+    remove (product){
+        this.list.splice( this.list.indexOf(product.id), 1 );
+        localStorage.setItem('wishlist',JSON.stringify(this.list))
+
+    }
+
 
   }
 }

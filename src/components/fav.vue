@@ -50,7 +50,7 @@ console.log(this.liste)
            localStorage.setItem('wishlist', JSON.stringify(this.liste))
 
            this.liste = JSON.parse(localStorage.getItem('wishlist'));
-           console.log(this.liste)
+
            this.btntxt="add"
 
          }
