@@ -3,6 +3,7 @@
     <div id="nav" class="has-text-left" style="background:black;margin-bottom:3em;">
       <router-link to="/">Home</router-link> |
       <router-link to="/home2">Home2</router-link> |
+      <router-link to="/home3">Home3</router-link> |
     </div>
     <router-view/>
     <footer class="footer" style="background:black;color:white;margin-top:2em;">
